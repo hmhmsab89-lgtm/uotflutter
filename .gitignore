@@ -1,0 +1,59 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+android/*.hprof
+android/hs_err_pid*.log
+android/replay_pid*.log
+android/captures/
+android/.cxx/
+
+# iOS
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/.symlinks/
+
+# Logs
+*.log
+logs/
+
+# Node.js (legacy web project files)
+node_modules/
+dist/
+dist-ssr/
+.output/
+.vinxi/
+.tanstack/**
+.nitro/
+bun.lockb
+package-lock.json
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment files (contain secrets)
+.env
+*.local
+
+# Build outputs
+build_output.log
