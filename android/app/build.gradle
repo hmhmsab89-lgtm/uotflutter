@@ -1,6 +1,7 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -24,21 +25,33 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.uot_trans_flutter"
-    compileSdk = 35
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.uot_trans_flutter"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+    }
+
+    // TODO: Add your own signing config for the release build.
+    // Signing with the debug keys for now, so `flutter run --release` works.
+    signingConfigs {
+        debug {}
     }
 
     buildTypes {
@@ -46,10 +59,6 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
-}
-
-dependencies {
-    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.4"
 }
 
 flutter {
