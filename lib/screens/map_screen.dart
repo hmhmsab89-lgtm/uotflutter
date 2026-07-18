@@ -419,10 +419,12 @@ class _MapScreenState extends State<MapScreen> {
               },
             ),
             children: [
-              // Custom map layers - OpenStreetMap streets
+              // Custom map layers - Mapbox
               TileLayer(
-                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: const ['a', 'b', 'c'],
+                urlTemplate: 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia2h2OHAiLCJhIjoiY21vZGZjMHQ0MDJjdjJxcjF6dGF6ZXNzZCJ9.Y_WaPqE1SOfH1Q0haXewzw',
+                additionalOptions: const {
+                  'accessToken': 'pk.eyJ1Ijoia2h2OHAiLCJhIjoiY21vZGZjMHQ0MDJjdjJxcjF6dGF6ZXNzZCJ9.Y_WaPqE1SOfH1Q0haXewzw',
+                },
               ),
               // Campus Border Boundary Polyline
               PolylineLayer(
