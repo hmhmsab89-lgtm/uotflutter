@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../services/supabase_service.dart';
 import '../models/call.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 
 class CallScreen extends StatefulWidget {
   final CallSession callSession;
@@ -73,6 +74,7 @@ class _CallScreenState extends State<CallScreen> {
             if (updated.status == 'rejected' || 
                 updated.status == 'ended' || 
                 updated.status == 'missed') {
+              FlutterCallkitIncoming.endAllCalls();
               if (mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("تم إنهاء المكالمة: ${_getFriendlyStatus(updated.status)}")),
@@ -107,6 +109,7 @@ class _CallScreenState extends State<CallScreen> {
     _timeoutSub?.cancel();
     final svc = Provider.of<SupabaseService>(context, listen: false);
     try {
+      await FlutterCallkitIncoming.endAllCalls();
       await svc.updateCallStatus(widget.callSession.id, status);
       if (mounted) Navigator.of(context).pop();
     } catch (_) {
