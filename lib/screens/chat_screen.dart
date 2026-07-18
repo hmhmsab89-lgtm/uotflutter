@@ -150,7 +150,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
     try {
       final bytes = await image.readAsBytes();
-      final path = await svc.uploadImageToBucket('chat_attachments', 'attach-${svc.currentUser!.id}', bytes);
+      final uniqueFileName = 'attach-${svc.currentUser!.id}-${DateTime.now().millisecondsSinceEpoch}.jpg';
+      final path = await svc.uploadImageToBucket('chat_attachments', uniqueFileName, bytes);
       if (path != null) {
         final publicUrl = svc.getPublicImageUrl('chat_attachments', path);
         await svc.sendChatMessage(
